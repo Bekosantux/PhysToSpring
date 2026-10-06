@@ -1,0 +1,93 @@
+{
+  "name": "g_gravity0.3_stiffness0.6",
+  "pb": {
+    "integrationType": "Simplified",
+    "pull": 0.2,
+    "spring": 0.2,
+    "stiffness": 0.6,
+    "gravity": 0.3,
+    "gravityFalloff": 0
+  },
+  "rig": {
+    "chains": [
+      {
+        "segments": 4,
+        "length": 0.05,
+        "direction": [
+          0,
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "name": "sag",
+      "warmup": 3,
+      "duration": 0
+    },
+    {
+      "name": "sine_rot_x",
+      "motion": [
+        {
+          "type": "sineRot",
+          "axis": [
+            1,
+            0,
+            0
+          ],
+          "amplitude": 30,
+          "frequency": 1.0
+        }
+      ],
+      "warmup": 1.5,
+      "duration": 3
+    },
+    {
+      "name": "step_y",
+      "motion": [
+        {
+          "type": "step",
+          "position": [
+            0,
+            0.1,
+            0
+          ]
+        }
+      ],
+      "warmup": 1.5,
+      "duration": 2
+    },
+    {
+      "name": "ramp_rot_y",
+      "motion": [
+        {
+          "type": "rampRot",
+          "axis": [
+            0,
+            1,
+            0
+          ],
+          "amplitude": 90,
+          "length": 0.3
+        }
+      ],
+      "warmup": 1.5,
+      "duration": 2
+    }
+  ],
+  "params": [
+    "stiffness",
+    "dragForce",
+    "gravityPower"
+  ],
+  "joints": 4,
+  "init": {
+    "stiffness": 0.55,
+    "dragForce": 0.75,
+    "gravityPower": 0.3
+  },
+  "sigma0": 0.7,
+  "popsize": 16
+}

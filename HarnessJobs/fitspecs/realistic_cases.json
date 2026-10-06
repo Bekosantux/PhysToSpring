@@ -1,0 +1,6 @@
+[
+  {"name": "move_x", "motion": [{"type": "rampPos", "axis": [1, 0, 0], "amplitude": 0.15, "length": 0.25}], "warmup": 0.2, "duration": 2},
+  {"name": "walk", "motion": [{"type": "sinePos", "axis": [0, 1, 0], "amplitude": 0.03, "frequency": 2.0}, {"type": "sinePos", "axis": [1, 0, 0], "amplitude": 0.03, "frequency": 1.0}], "warmup": 0.2, "duration": 3},
+  {"name": "head_turn", "rig": {"rootPosition": [0, 0, 0.1]}, "motion": [{"type": "rampRot", "axis": [0, 1, 0], "amplitude": 70, "length": 0.3}], "warmup": 0.2, "duration": 2},
+  {"name": "nod", "rig": {"rootPosition": [0, 0.1, 0.05]}, "motion": [{"type": "sineRot", "axis": [1, 0, 0], "amplitude": 20, "frequency": 2.0}], "warmup": 0.2, "duration": 2}
+]

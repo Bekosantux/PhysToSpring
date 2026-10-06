@@ -1,0 +1,326 @@
+[
+  {
+    "name": "p0.05_s0.0",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.05,
+      "spring": 0.0,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.01020940112,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.00367246429,
+      "sine_rot_z": 0.00507731829,
+      "chirp_pos_x": 0.007356957,
+      "ramp_rot_z": 0.0247308649
+    },
+    "params": {
+      "stiffness": [
+        0.15757012548967889
+      ],
+      "dragForce": [
+        0.997951213626524
+      ]
+    }
+  },
+  {
+    "name": "p0.05_s0.2",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.05,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.17562149925,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.26766,
+      "sine_rot_z": 0.0674433,
+      "chirp_pos_x": 0.299697757,
+      "ramp_rot_z": 0.06768494
+    },
+    "params": {
+      "stiffness": [
+        0.12965886696130022
+      ],
+      "dragForce": [
+        0.8205314789848352
+      ]
+    }
+  },
+  {
+    "name": "p0.05_s0.4",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.05,
+      "spring": 0.4,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.50871815525,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.8399699,
+      "sine_rot_z": 0.214142084,
+      "chirp_pos_x": 0.7496959,
+      "ramp_rot_z": 0.231064737
+    },
+    "params": {
+      "stiffness": [
+        0.1027337990993548
+      ],
+      "dragForce": [
+        0.6499242810219413
+      ]
+    }
+  },
+  {
+    "name": "p0.05_s0.6",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.05,
+      "spring": 0.6,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 1.32162322225,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 2.25403857,
+      "sine_rot_z": 0.782294869,
+      "chirp_pos_x": 1.54234755,
+      "ramp_rot_z": 0.7078119
+    },
+    "params": {
+      "stiffness": [
+        0.07782145356020452
+      ],
+      "dragForce": [
+        0.4924663500250991
+      ]
+    }
+  },
+  {
+    "name": "p0.1_s0.0",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.1,
+      "spring": 0.0,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.0159873025,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.013661393,
+      "sine_rot_z": 0.0163875315,
+      "chirp_pos_x": 0.0242431015,
+      "ramp_rot_z": 0.009657184
+    },
+    "params": {
+      "stiffness": [
+        0.33172722301643165
+      ],
+      "dragForce": [
+        0.9953014467084721
+      ]
+    }
+  },
+  {
+    "name": "p0.1_s0.2",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.1,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.21116053725,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.450676739,
+      "sine_rot_z": 0.02029172,
+      "chirp_pos_x": 0.3150141,
+      "ramp_rot_z": 0.05865959
+    },
+    "params": {
+      "stiffness": [
+        0.2623356533930203
+      ],
+      "dragForce": [
+        0.7861584305649919
+      ]
+    }
+  },
+  {
+    "name": "p0.2_s0.0",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.0,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.006417051525,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.00458994973,
+      "sine_rot_z": 0.005606424,
+      "chirp_pos_x": 0.011262225,
+      "ramp_rot_z": 0.00420960737
+    },
+    "params": {
+      "stiffness": [
+        0.7491458328819758
+      ],
+      "dragForce": [
+        0.9988079064202207
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.0",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.0,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.014241255775,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.0106242523,
+      "sine_rot_z": 0.0162558723,
+      "chirp_pos_x": 0.0254426785,
+      "ramp_rot_z": 0.00464222
+    },
+    "params": {
+      "stiffness": [
+        1.9943399052605348
+      ],
+      "dragForce": [
+        0.9971735973805429
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.0",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.0,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.007845185420000001,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.008565123,
+      "sine_rot_z": 0.00761743728,
+      "chirp_pos_x": 0.0131614394,
+      "ramp_rot_z": 0.002036742
+    },
+    "params": {
+      "stiffness": [
+        6.979356742112767
+      ],
+      "dragForce": [
+        0.9969134669393651
+      ]
+    }
+  },
+  {
+    "name": "p1.0_s0.0",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 1.0,
+      "spring": 0.0,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 3.64727115e-06,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.0,
+      "sine_rot_z": 1.13332026e-05,
+      "chirp_pos_x": 0.0,
+      "ramp_rot_z": 3.255882e-06
+    },
+    "params": {
+      "stiffness": [
+        522264.47246366565
+      ],
+      "dragForce": [
+        0.985284764633971
+      ]
+    }
+  },
+  {
+    "name": "p1.0_s0.2",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 1.0,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.0495982668575,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.168315053,
+      "sine_rot_z": 0.0114820153,
+      "chirp_pos_x": 0.0124407355,
+      "ramp_rot_z": 0.00615526363
+    },
+    "params": {
+      "stiffness": [
+        12.123239598629779
+      ],
+      "dragForce": [
+        0.0006148051902133544
+      ]
+    }
+  },
+  {
+    "name": "p1.0_s0.4",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 1.0,
+      "spring": 0.4,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.41584303802499994,
+    "gen": 50,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 1.31823528,
+      "sine_rot_z": 0.05279742,
+      "chirp_pos_x": 0.254814059,
+      "ramp_rot_z": 0.0375253931
+    },
+    "params": {
+      "stiffness": [
+        4.53543252441481
+      ],
+      "dragForce": [
+        0.0066539948364298575
+      ]
+    }
+  }
+]

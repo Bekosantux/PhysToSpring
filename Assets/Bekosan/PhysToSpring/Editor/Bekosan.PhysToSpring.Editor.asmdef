@@ -1,0 +1,22 @@
+{
+    "name": "Bekosan.PhysToSpring.Editor",
+    "rootNamespace": "Bekosan.PhysToSpring.Editor",
+    "references": [
+        "Bekosan.PhysToSpring",
+        "VRM10",
+        "SpringBoneJobs",
+        "UniGLTF",
+        "UniHumanoid"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

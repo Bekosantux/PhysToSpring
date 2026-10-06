@@ -1,0 +1,71 @@
+# ---- Unity ----
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+*.DotSettings.user
+sysinfo.txt
+crashlytics-buildid.txt
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# ---- IDE / tools ----
+.idea/
+.vs/
+.vscode/
+.claude/
+__pycache__/
+*.pyc
+*.log
+
+# ---- 再配布不可のアセット / 外部パッケージ ----
+# 有料アバターとそこから生成したアセット
+/Assets/MANUKA/
+/Assets/MANUKA.meta
+/Assets/PhysToSpring_Generated/
+/Assets/PhysToSpring_Generated.meta
+# VRChat SDK / UniVRM / lilToon は各配布元から導入する
+/Packages/com.vrchat.*/
+/Packages/com.vrmc.*/
+/Packages/jp.lilxyzw.liltoon/
+
+# ---- ハーネスの作業データ ----
+/HarnessJobs/results/
+/HarnessJobs/done/
+/HarnessJobs/failed/
+/HarnessJobs/requests/
+/HarnessJobs/running/
+/HarnessJobs/apilist/
+/HarnessJobs/mappercheck/bin/
+/HarnessJobs/mappercheck/obj/
+# results/ を絶対パスで参照するジョブ索引（係数・マッピング本体は残す）
+/HarnessJobs/maps/collect_*.json
+!/HarnessJobs/maps/collect_*_percfg.json
+/HarnessJobs/maps/*_validate_*.json
+/HarnessJobs/maps/conv_check_*.json
+/HarnessJobs/maps/adv_s5_trace.json
+/HarnessJobs/maps/sag2.json
+/HarnessJobs/maps/sag_raw.json

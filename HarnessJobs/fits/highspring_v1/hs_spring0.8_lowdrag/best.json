@@ -1,0 +1,37 @@
+{
+  "name": "hs_spring0.8_lowdrag",
+  "pb": {
+    "integrationType": "Simplified",
+    "pull": 0.2,
+    "spring": 0.8,
+    "stiffness": 0.2,
+    "gravity": 0
+  },
+  "err": 6.4380022275,
+  "cases": {
+    "step_x": 7.178816,
+    "sine_rot_z": 5.40234327,
+    "chirp_pos_x": 8.73291,
+    "ramp_rot_z": 4.43793964
+  },
+  "vrm": {
+    "stiffness": 1.0,
+    "dragForce": 0.4,
+    "gravityPower": 0.0,
+    "perJoint": {
+      "stiffness": [
+        0.19686986825702832,
+        0.20974202819996624,
+        0.09759923154967122,
+        0.15687496677227994
+      ],
+      "dragForce": [
+        0.34083119823877495,
+        0.30915989004845845,
+        0.11685126148216188,
+        0.23604052572650813
+      ]
+    }
+  },
+  "gen": 45
+}

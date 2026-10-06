@@ -1,0 +1,31 @@
+{
+  "name": "p0.26_s0.58",
+  "pb": {
+    "integrationType": "Simplified",
+    "pull": 0.26,
+    "spring": 0.58,
+    "stiffness": 0.2,
+    "gravity": 0
+  },
+  "err": 2.318943225,
+  "cases": {
+    "step_x": 5.194083,
+    "sine_rot_z": 1.14650667,
+    "chirp_pos_x": 2.17936563,
+    "ramp_rot_z": 0.7558176
+  },
+  "vrm": {
+    "stiffness": 1.0,
+    "dragForce": 0.4,
+    "gravityPower": 0.0,
+    "perJoint": {
+      "stiffness": [
+        0.404791975031143
+      ],
+      "dragForce": [
+        0.390457251635178
+      ]
+    }
+  },
+  "gen": 50
+}

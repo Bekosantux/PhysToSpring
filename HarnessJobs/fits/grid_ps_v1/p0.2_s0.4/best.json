@@ -1,0 +1,31 @@
+{
+  "name": "p0.2_s0.4",
+  "pb": {
+    "integrationType": "Simplified",
+    "pull": 0.2,
+    "spring": 0.4,
+    "stiffness": 0.2,
+    "gravity": 0
+  },
+  "err": 0.8756919755000001,
+  "cases": {
+    "step_x": 2.01670957,
+    "sine_rot_z": 0.2580385,
+    "chirp_pos_x": 1.01342511,
+    "ramp_rot_z": 0.214594722
+  },
+  "vrm": {
+    "stiffness": 1.0,
+    "dragForce": 0.4,
+    "gravityPower": 0.0,
+    "perJoint": {
+      "stiffness": [
+        0.42313499673780125
+      ],
+      "dragForce": [
+        0.5633590040725658
+      ]
+    }
+  },
+  "gen": 46
+}

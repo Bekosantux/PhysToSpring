@@ -1,0 +1,650 @@
+[
+  {
+    "name": "p0.2_s0.2_n4_L0.0125",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 1.3222373275,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.6617444,
+      "sine_rot_z": 1.16345263,
+      "chirp_pos_x": 3.00091028,
+      "ramp_rot_z": 0.462842
+    },
+    "params": {
+      "stiffness": [
+        0.17814990270332737
+      ],
+      "dragForce": [
+        0.9399318847726451
+      ]
+    }
+  },
+  {
+    "name": "p0.2_s0.2_n4_L0.025",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.8978986852499999,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 1.03372312,
+      "sine_rot_z": 0.6635146,
+      "chirp_pos_x": 1.61173677,
+      "ramp_rot_z": 0.282620251
+    },
+    "params": {
+      "stiffness": [
+        0.3229364635261449
+      ],
+      "dragForce": [
+        0.8581153314547038
+      ]
+    }
+  },
+  {
+    "name": "p0.2_s0.2_n4_L0.1",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.059633237325000005,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.0975252241,
+      "sine_rot_z": 0.035672687,
+      "chirp_pos_x": 0.0501480736,
+      "ramp_rot_z": 0.0551869646
+    },
+    "params": {
+      "stiffness": [
+        1.1477664630979496
+      ],
+      "dragForce": [
+        0.7645248805912744
+      ]
+    }
+  },
+  {
+    "name": "p0.2_s0.2_n4_L0.2",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.038862945975,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.0197102744,
+      "sine_rot_z": 0.0509731546,
+      "chirp_pos_x": 0.0246441849,
+      "ramp_rot_z": 0.06012417
+    },
+    "params": {
+      "stiffness": [
+        2.3056
+      ],
+      "dragForce": [
+        0.7678
+      ]
+    }
+  },
+  {
+    "name": "p0.2_s0.2_n2_L0.1",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.043440529775,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.1008887,
+      "sine_rot_z": 0.0185271241,
+      "chirp_pos_x": 0.0364976376,
+      "ramp_rot_z": 0.0178486574
+    },
+    "params": {
+      "stiffness": [
+        1.1429110080514353
+      ],
+      "dragForce": [
+        0.7602404505254716
+      ]
+    }
+  },
+  {
+    "name": "p0.2_s0.2_n8_L0.025",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 1.33042513525,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 1.70691156,
+      "sine_rot_z": 1.01860559,
+      "chirp_pos_x": 2.15981722,
+      "ramp_rot_z": 0.436366171
+    },
+    "params": {
+      "stiffness": [
+        0.316076487880627
+      ],
+      "dragForce": [
+        0.839122131633188
+      ]
+    }
+  },
+  {
+    "name": "p0.2_s0.2_n8_L0.05",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.4443398975,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.659831166,
+      "sine_rot_z": 0.181011647,
+      "chirp_pos_x": 0.731085062,
+      "ramp_rot_z": 0.205431715
+    },
+    "params": {
+      "stiffness": [
+        0.5791446636058099
+      ],
+      "dragForce": [
+        0.7726370558462596
+      ]
+    }
+  },
+  {
+    "name": "p0.2_s0.2_n2_L0.05",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.2,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.20068453209999998,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.5014179,
+      "sine_rot_z": 0.0521195643,
+      "chirp_pos_x": 0.212992936,
+      "ramp_rot_z": 0.0362077281
+    },
+    "params": {
+      "stiffness": [
+        0.5820971738769904
+      ],
+      "dragForce": [
+        0.7746844858655373
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.5_n4_L0.0125",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.5,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 5.69452206,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 6.90355253,
+      "sine_rot_z": 4.52363443,
+      "chirp_pos_x": 8.895641,
+      "ramp_rot_z": 2.45526028
+    },
+    "params": {
+      "stiffness": [
+        0.38103045195760127
+      ],
+      "dragForce": [
+        0.7762510619512722
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.5_n4_L0.025",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.5,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 3.8123578,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 6.38862467,
+      "sine_rot_z": 2.9084537,
+      "chirp_pos_x": 4.30762,
+      "ramp_rot_z": 1.64473283
+    },
+    "params": {
+      "stiffness": [
+        0.5202914324925275
+      ],
+      "dragForce": [
+        0.5507132560245932
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.5_n4_L0.1",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.5,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.32599117025,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.473571181,
+      "sine_rot_z": 0.1923307,
+      "chirp_pos_x": 0.4215452,
+      "ramp_rot_z": 0.2165176
+    },
+    "params": {
+      "stiffness": [
+        1.5390156434236546
+      ],
+      "dragForce": [
+        0.3892981534208294
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.5_n4_L0.2",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.5,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.14771535525,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 0.06726739,
+      "sine_rot_z": 0.149320185,
+      "chirp_pos_x": 0.124325946,
+      "ramp_rot_z": 0.2499479
+    },
+    "params": {
+      "stiffness": [
+        3.048994869958493
+      ],
+      "dragForce": [
+        0.3840362695802499
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.5_n2_L0.1",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.5,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.14761452334999997,
+    "gen": 58,
+    "done": "converged: spread < 0.01",
+    "cases": {
+      "step_x": 0.378382623,
+      "sine_rot_z": 0.0289043169,
+      "chirp_pos_x": 0.148707286,
+      "ramp_rot_z": 0.0344638675
+    },
+    "params": {
+      "stiffness": [
+        1.5307796615400722
+      ],
+      "dragForce": [
+        0.38360547440132886
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.5_n8_L0.025",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.5,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 8.076369025,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 10.5921087,
+      "sine_rot_z": 6.743361,
+      "chirp_pos_x": 9.173325,
+      "ramp_rot_z": 5.7966814
+    },
+    "params": {
+      "stiffness": [
+        0.5169233141565006
+      ],
+      "dragForce": [
+        0.553868084169102
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.5_n8_L0.05",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.5,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 3.6818806200000003,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 5.04852247,
+      "sine_rot_z": 1.94638789,
+      "chirp_pos_x": 6.086439,
+      "ramp_rot_z": 1.64617312
+    },
+    "params": {
+      "stiffness": [
+        0.785951054172167
+      ],
+      "dragForce": [
+        0.41406763938472435
+      ]
+    }
+  },
+  {
+    "name": "p0.4_s0.5_n2_L0.05",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.4,
+      "spring": 0.5,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.929243784025,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 2.86029148,
+      "sine_rot_z": 0.194912359,
+      "chirp_pos_x": 0.563921332,
+      "ramp_rot_z": 0.0978499651
+    },
+    "params": {
+      "stiffness": [
+        0.7976962185650043
+      ],
+      "dragForce": [
+        0.40114688055253506
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.2_n4_L0.0125",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 1.8506882792500001,
+    "gen": 57,
+    "done": "converged: spread < 0.01",
+    "cases": {
+      "step_x": 3.2665565,
+      "sine_rot_z": 0.473240435,
+      "chirp_pos_x": 3.37635136,
+      "ramp_rot_z": 0.286604822
+    },
+    "params": {
+      "stiffness": [
+        1.2130347972712485
+      ],
+      "dragForce": [
+        0.7104711349249349
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.2_n4_L0.025",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.434407206725,
+    "gen": 59,
+    "done": "converged: spread < 0.01",
+    "cases": {
+      "step_x": 1.46191013,
+      "sine_rot_z": 0.0475689471,
+      "chirp_pos_x": 0.202602223,
+      "ramp_rot_z": 0.0255475268
+    },
+    "params": {
+      "stiffness": [
+        1.9414160749051272
+      ],
+      "dragForce": [
+        0.5583505371103723
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.2_n4_L0.1",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.01828268575,
+    "gen": 59,
+    "done": "converged: spread < 0.01",
+    "cases": {
+      "step_x": 0.04519592,
+      "sine_rot_z": 0.009018742,
+      "chirp_pos_x": 0.01337942,
+      "ramp_rot_z": 0.005536661
+    },
+    "params": {
+      "stiffness": [
+        7.6918
+      ],
+      "dragForce": [
+        0.5503
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.2_n4_L0.2",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.0088461597725,
+    "gen": 56,
+    "done": "converged: spread < 0.01",
+    "cases": {
+      "step_x": 0.008743217,
+      "sine_rot_z": 0.00714790449,
+      "chirp_pos_x": 0.0136403106,
+      "ramp_rot_z": 0.005853207
+    },
+    "params": {
+      "stiffness": [
+        15.341765949318418
+      ],
+      "dragForce": [
+        0.5487139393502586
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.2_n2_L0.1",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.0114560998625,
+    "gen": 57,
+    "done": "converged: spread < 0.01",
+    "cases": {
+      "step_x": 0.0340383761,
+      "sine_rot_z": 0.004592421,
+      "chirp_pos_x": 0.006101842,
+      "ramp_rot_z": 0.00109176035
+    },
+    "params": {
+      "stiffness": [
+        7.690912794651048
+      ],
+      "dragForce": [
+        0.5494379414533407
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.2_n8_L0.025",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.86405816775,
+    "gen": 60,
+    "done": "stopped: maxGen reached",
+    "cases": {
+      "step_x": 2.09833813,
+      "sine_rot_z": 0.334017426,
+      "chirp_pos_x": 0.8501786,
+      "ramp_rot_z": 0.173698515
+    },
+    "params": {
+      "stiffness": [
+        1.9525177971975163
+      ],
+      "dragForce": [
+        0.5676995399639585
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.2_n8_L0.05",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.28389378512499996,
+    "gen": 57,
+    "done": "converged: spread < 0.01",
+    "cases": {
+      "step_x": 0.5959053,
+      "sine_rot_z": 0.097994335,
+      "chirp_pos_x": 0.3868637,
+      "ramp_rot_z": 0.0548118055
+    },
+    "params": {
+      "stiffness": [
+        3.8513942182629584
+      ],
+      "dragForce": [
+        0.5542039433266401
+      ]
+    }
+  },
+  {
+    "name": "p0.7_s0.2_n2_L0.05",
+    "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.7,
+      "spring": 0.2,
+      "stiffness": 0.2,
+      "gravity": 0
+    },
+    "err": 0.06433441248749999,
+    "gen": 57,
+    "done": "converged: spread < 0.01",
+    "cases": {
+      "step_x": 0.2354447,
+      "sine_rot_z": 0.006588026,
+      "chirp_pos_x": 0.0131261963,
+      "ramp_rot_z": 0.00217872765
+    },
+    "params": {
+      "stiffness": [
+        3.8459
+      ],
+      "dragForce": [
+        0.5503
+      ]
+    }
+  }
+]

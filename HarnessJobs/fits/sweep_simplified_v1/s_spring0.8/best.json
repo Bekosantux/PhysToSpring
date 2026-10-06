@@ -1,0 +1,37 @@
+{
+  "name": "s_spring0.8",
+  "pb": {
+    "integrationType": "Simplified",
+    "pull": 0.2,
+    "spring": 0.8,
+    "stiffness": 0.2,
+    "gravity": 0
+  },
+  "err": 10.319985725,
+  "cases": {
+    "step_x": 13.1818008,
+    "sine_rot_z": 11.3139162,
+    "chirp_pos_x": 10.7460279,
+    "ramp_rot_z": 6.038198
+  },
+  "vrm": {
+    "stiffness": 1.0,
+    "dragForce": 0.4,
+    "gravityPower": 0.0,
+    "perJoint": {
+      "stiffness": [
+        0.1968867607658774,
+        0.30468524853204,
+        0.13860734444820047,
+        0.09117397255206139
+      ],
+      "dragForce": [
+        0.29251370690945366,
+        0.5826333474131902,
+        0.19413541861151956,
+        0.0976282750126349
+      ]
+    }
+  },
+  "gen": 32
+}

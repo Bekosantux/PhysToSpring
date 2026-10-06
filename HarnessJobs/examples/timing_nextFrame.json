@@ -1,0 +1,60 @@
+{
+  "name": "timing_nextFrame",
+  "fps": 60,
+  "cases": [
+    {
+      "name": "gravity_sag_horizontal",
+      "rig": {
+        "chains": [
+          {
+            "segments": 4,
+            "length": 0.05,
+            "direction": [
+              0,
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "pb": {
+        "pull": 0.2,
+        "spring": 0.2,
+        "stiffness": 0.2,
+        "gravity": 0.3
+      },
+      "vrm": {
+        "stiffness": 1.0,
+        "gravityPower": 0.3,
+        "dragForce": 0.4
+      },
+      "warmup": 2,
+      "duration": 0
+    },
+    {
+      "name": "step_pos_x",
+      "pb": {
+        "pull": 0.2,
+        "spring": 0.2,
+        "stiffness": 0.2
+      },
+      "vrm": {
+        "stiffness": 1.0,
+        "dragForce": 0.4
+      },
+      "motion": [
+        {
+          "type": "step",
+          "position": [
+            0.1,
+            0,
+            0
+          ]
+        }
+      ],
+      "warmup": 0.5,
+      "duration": 2
+    }
+  ],
+  "pbSampleTiming": "nextFrame"
+}

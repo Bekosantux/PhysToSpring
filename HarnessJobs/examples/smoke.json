@@ -1,0 +1,46 @@
+{
+  "name": "smoke",
+  "fps": 60,
+  "cases": [
+    {
+      "name": "gravity_sag_horizontal",
+      "rig": { "chains": [ { "segments": 4, "length": 0.05, "direction": [0, 0, 1] } ] },
+      "pb": { "pull": 0.2, "spring": 0.2, "stiffness": 0.2, "gravity": 0.3 },
+      "vrm": { "stiffness": 1.0, "gravityPower": 0.3, "dragForce": 0.4 },
+      "warmup": 2,
+      "duration": 0
+    },
+    {
+      "name": "step_pos_x",
+      "pb": { "pull": 0.2, "spring": 0.2, "stiffness": 0.2 },
+      "vrm": { "stiffness": 1.0, "dragForce": 0.4 },
+      "motion": [ { "type": "step", "position": [0.1, 0, 0] } ],
+      "warmup": 0.5,
+      "duration": 2
+    },
+    {
+      "name": "sine_rot_z_advanced",
+      "pb": { "integrationType": "Advanced", "pull": 0.2, "spring": 0.5, "stiffness": 0.2, "immobile": 0.3 },
+      "vrm": { "stiffness": 1.0, "dragForce": 0.4 },
+      "motion": [ { "type": "sineRot", "axis": [0, 0, 1], "amplitude": 30, "frequency": 1.5 } ],
+      "warmup": 0.5,
+      "duration": 2
+    },
+    {
+      "name": "two_chains_first_endpoint_collider",
+      "rig": {
+        "chains": [
+          { "segments": 3, "length": 0.06, "direction": [0.3, -1, 0] },
+          { "segments": 3, "length": 0.06, "direction": [-0.3, -1, 0] }
+        ],
+        "endpoint": [0, -0.04, 0]
+      },
+      "pb": { "multiChildType": "First", "pull": 0.3, "spring": 0.3, "gravity": 0.2, "radius": 0.01 },
+      "vrm": { "stiffness": 1.5, "gravityPower": 0.2, "dragForce": 0.5, "hitRadius": 0.01 },
+      "colliders": [ { "attach": "Driver", "shape": "Sphere", "radius": 0.04, "position": [0, -0.12, 0.05] } ],
+      "motion": [ { "type": "chirpPos", "axis": [0, 0, 1], "amplitude": 0.05, "frequency": 0.5, "frequencyEnd": 4, "length": 2 } ],
+      "warmup": 0.5,
+      "duration": 2.5
+    }
+  ]
+}

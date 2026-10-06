@@ -1,0 +1,22 @@
+{
+    "name": "Bekosan.PhysToSpring.Harness.Editor",
+    "rootNamespace": "Bekosan.PhysToSpring.Harness.Editor",
+    "references": [
+        "Bekosan.PhysToSpring.Harness",
+        "Bekosan.PhysToSpring",
+        "Bekosan.PhysToSpring.Editor",
+        "SpringBoneJobs",
+        "VRM10"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

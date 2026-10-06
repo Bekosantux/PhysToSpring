@@ -1,0 +1,19 @@
+{
+    "name": "Bekosan.PhysToSpring.Harness",
+    "rootNamespace": "Bekosan.PhysToSpring.Harness",
+    "references": [
+        "VRM10",
+        "SpringBoneJobs",
+        "UniGLTF",
+        "Unity.Mathematics"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
