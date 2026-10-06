@@ -4,7 +4,6 @@ using UniGLTF.SpringBoneJobs;
 using UnityEditor;
 using UnityEngine;
 using UniVRM10;
-using VRC.Dynamics;
 
 namespace Bekosan.PhysToSpring.Editor
 {
@@ -28,22 +27,22 @@ namespace Bekosan.PhysToSpring.Editor
             Clear(avatarRoot, instance);
 
             Undo.RecordObject(instance, "PhysToSpring");
-            var groups = new Dictionary<VRCPhysBoneColliderBase, VRM10SpringBoneColliderGroup>();
+            var groups = new Dictionary<ColliderPlan, VRM10SpringBoneColliderGroup>();
             foreach (var plan in plans)
             {
                 var spring = new Vrm10InstanceSpringBone.Spring(plan.Name)
                 {
                     Center = plan.Center,
                 };
-                foreach (var pbCollider in plan.Colliders)
+                foreach (var colliderPlan in plan.Colliders)
                 {
-                    if (!groups.TryGetValue(pbCollider, out var group))
+                    if (!groups.TryGetValue(colliderPlan, out var group))
                     {
-                        group = AddCollider(pbCollider, report);
-                        groups[pbCollider] = group;
-                        if (group != null) instance.SpringBone.ColliderGroups.Add(group);
+                        group = AddCollider(colliderPlan);
+                        groups[colliderPlan] = group;
+                        instance.SpringBone.ColliderGroups.Add(group);
                     }
-                    if (group != null) spring.ColliderGroups.Add(group);
+                    spring.ColliderGroups.Add(group);
                 }
 
                 var nodes = new List<Transform>(plan.Bones);
@@ -103,43 +102,18 @@ namespace Bekosan.PhysToSpring.Editor
             joint.m_yaw = plan.Yaw;
         }
 
-        /// <summary>
-        /// PhysBone コライダー 1 個を VRM コライダー + 1 個だけ持つグループにする。
-        /// Capsule の height は両端の半球込みの全長、軸はローカル Y。
-        /// </summary>
-        static VRM10SpringBoneColliderGroup AddCollider(VRCPhysBoneColliderBase pb, ConversionReport report)
+        /// <summary>ColliderPlan 1 個を VRM コライダー + それだけを持つグループにする。</summary>
+        static VRM10SpringBoneColliderGroup AddCollider(ColliderPlan plan)
         {
-            var attach = pb.rootTransform != null ? pb.rootTransform : pb.transform;
-            var col = Undo.AddComponent<VRM10SpringBoneCollider>(attach.gameObject);
-            var axis = pb.rotation * Vector3.up;
-            col.Radius = pb.radius;
-            col.Offset = pb.position;
-            switch (pb.shapeType)
-            {
-                case VRCPhysBoneColliderBase.ShapeType.Sphere:
-                    col.ColliderType = pb.insideBounds ? VRM10SpringBoneColliderTypes.SphereInside : VRM10SpringBoneColliderTypes.Sphere;
-                    break;
-                case VRCPhysBoneColliderBase.ShapeType.Capsule:
-                    var half = Mathf.Max(0f, pb.height * 0.5f - pb.radius);
-                    col.ColliderType = pb.insideBounds ? VRM10SpringBoneColliderTypes.CapsuleInside : VRM10SpringBoneColliderTypes.Capsule;
-                    col.Offset = pb.position - axis * half;
-                    col.Tail = pb.position + axis * half;
-                    break;
-                case VRCPhysBoneColliderBase.ShapeType.Plane:
-                    col.ColliderType = VRM10SpringBoneColliderTypes.Plane;
-                    col.Normal = axis;
-                    break;
-                default:
-                    report.Warn($"{pb.name}: 未知のコライダー形状 {pb.shapeType} は変換しません", pb);
-                    Undo.DestroyObjectImmediate(col);
-                    return null;
-            }
-            if (pb.insideBounds || pb.shapeType == VRCPhysBoneColliderBase.ShapeType.Plane)
-            {
-                report.Info($"{pb.name}: {col.ColliderType} は VRMC_springBone_extended_collider で出力されます (非対応ビューアでは代替形状)", pb);
-            }
-            var group = Undo.AddComponent<VRM10SpringBoneColliderGroup>(attach.gameObject);
-            group.Name = pb.name;
+            var go = plan.Attach.gameObject;
+            var col = Undo.AddComponent<VRM10SpringBoneCollider>(go);
+            col.ColliderType = plan.Type;
+            col.Radius = plan.Radius;
+            col.Offset = plan.Offset;
+            if (plan.Type == VRM10SpringBoneColliderTypes.Capsule || plan.Type == VRM10SpringBoneColliderTypes.CapsuleInside) col.Tail = plan.Tail;
+            if (plan.Type == VRM10SpringBoneColliderTypes.Plane) col.Normal = plan.Normal;
+            var group = Undo.AddComponent<VRM10SpringBoneColliderGroup>(go);
+            group.Name = plan.Name;
             group.Colliders.Add(col);
             return group;
         }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UniGLTF.SpringBoneJobs;
 using UnityEngine;
+using UniVRM10;
 using VRC.Dynamics;
 using VRC.SDK3.Dynamics.PhysBone.Components;
 
@@ -18,6 +19,25 @@ namespace Bekosan.PhysToSpring.Editor
         public Quaternion LimitOffset;
     }
 
+    /// <summary>
+    /// VRM コライダー 1 個 (と、それだけを持つコライダーグループ) の変換計画。
+    /// 同じ PhysBone コライダーを使う spring どうしで同じインスタンスを共有する。
+    /// </summary>
+    public sealed class ColliderPlan
+    {
+        public string Name;
+        public VRCPhysBoneColliderBase Source;
+        /// <summary>コライダーを付ける Transform。Offset / Tail / Normal はこのローカル座標。</summary>
+        public Transform Attach;
+        public VRM10SpringBoneColliderTypes Type;
+        public float Radius;
+        public Vector3 Offset;
+        /// <summary>Capsule の他端。Capsule 以外では使わない。</summary>
+        public Vector3 Tail;
+        /// <summary>Plane の法線。Plane 以外では使わない。</summary>
+        public Vector3 Normal;
+    }
+
     /// <summary>VRM の spring 1 本分の変換計画。シーンには触れない。</summary>
     public sealed class SpringPlan
     {
@@ -29,7 +49,7 @@ namespace Bekosan.PhysToSpring.Editor
         public Vector3? EndpointLocal;
         /// <summary>セグメントごと (= tail 以外の joint ごと)。</summary>
         public readonly List<JointPlan> Joints = new List<JointPlan>();
-        public readonly List<VRCPhysBoneColliderBase> Colliders = new List<VRCPhysBoneColliderBase>();
+        public readonly List<ColliderPlan> Colliders = new List<ColliderPlan>();
         /// <summary>VRM spring の center。null なら center なし (immobile を再現しない)。</summary>
         public Transform Center;
     }
@@ -60,6 +80,7 @@ namespace Bekosan.PhysToSpring.Editor
             var roots = new HashSet<Transform>(physBones.Select(RootOf));
             var plans = new List<SpringPlan>();
             var owner = new Dictionary<Transform, VRCPhysBone>();
+            var colliderPlans = new Dictionary<VRCPhysBoneColliderBase, ColliderPlan>();
             foreach (var pb in physBones)
             {
                 // 無効なコンポーネントは PhysBone では揺れない。VRM では切り替えられないので変換しない
@@ -73,7 +94,7 @@ namespace Bekosan.PhysToSpring.Editor
                 {
                     report.Info($"{pb.name}: 非アクティブなオブジェクトの PhysBone ですが変換します", pb);
                 }
-                var springs = ReadOne(pb, avatarRoot, roots, report);
+                var springs = ReadOne(pb, avatarRoot, roots, colliderPlans, report);
                 foreach (var plan in springs)
                 {
                     // 1 つの Transform は 1 つの spring にしか入れられない
@@ -103,7 +124,8 @@ namespace Bekosan.PhysToSpring.Editor
             return pb.immobileType == VRCPhysBoneBase.ImmobileType.World ? avatarRoot : RootOf(pb).parent;
         }
 
-        static List<SpringPlan> ReadOne(VRCPhysBone pb, Transform avatarRoot, HashSet<Transform> pbRoots, ConversionReport report)
+        static List<SpringPlan> ReadOne(VRCPhysBone pb, Transform avatarRoot, HashSet<Transform> pbRoots,
+            Dictionary<VRCPhysBoneColliderBase, ColliderPlan> colliderPlans, ConversionReport report)
         {
             var result = new List<SpringPlan>();
             if (pb.version == VRCPhysBoneBase.Version.Version_1_0)
@@ -192,8 +214,8 @@ namespace Bekosan.PhysToSpring.Editor
             var center = CenterOf(pb, avatarRoot);
             var colliders = pb.allowCollision != VRCPhysBoneBase.AdvancedBool.False
                 && pb.colliders != null
-                ? pb.colliders.Where(c => c != null).Distinct().ToList()
-                : new List<VRCPhysBoneColliderBase>();
+                ? pb.colliders.Where(c => c != null).Distinct().Select(c => ColliderOf(c, colliderPlans, report)).Where(c => c != null).ToList()
+                : new List<ColliderPlan>();
 
             for (var ci = 0; ci < chains.Count; ++ci)
             {
@@ -210,6 +232,53 @@ namespace Bekosan.PhysToSpring.Editor
                 if (BuildJoints(pb, plan, depthOf, maxDepth, report)) result.Add(plan);
             }
             return result;
+        }
+
+        static ColliderPlan ColliderOf(VRCPhysBoneColliderBase pb, Dictionary<VRCPhysBoneColliderBase, ColliderPlan> cache, ConversionReport report)
+        {
+            if (!cache.TryGetValue(pb, out var plan)) cache[pb] = plan = PlanCollider(pb, report);
+            return plan;
+        }
+
+        /// <summary>
+        /// PhysBone コライダー 1 個を VRM コライダーにする。未知の形状なら null。
+        /// Capsule の height は両端の半球込みの全長、軸はローカル Y。
+        /// </summary>
+        static ColliderPlan PlanCollider(VRCPhysBoneColliderBase pb, ConversionReport report)
+        {
+            var plan = new ColliderPlan
+            {
+                Name = pb.name,
+                Source = pb,
+                Attach = pb.rootTransform != null ? pb.rootTransform : pb.transform,
+                Radius = pb.radius,
+                Offset = pb.position,
+            };
+            var axis = pb.rotation * Vector3.up;
+            switch (pb.shapeType)
+            {
+                case VRCPhysBoneColliderBase.ShapeType.Sphere:
+                    plan.Type = pb.insideBounds ? VRM10SpringBoneColliderTypes.SphereInside : VRM10SpringBoneColliderTypes.Sphere;
+                    break;
+                case VRCPhysBoneColliderBase.ShapeType.Capsule:
+                    var half = Mathf.Max(0f, pb.height * 0.5f - pb.radius);
+                    plan.Type = pb.insideBounds ? VRM10SpringBoneColliderTypes.CapsuleInside : VRM10SpringBoneColliderTypes.Capsule;
+                    plan.Offset = pb.position - axis * half;
+                    plan.Tail = pb.position + axis * half;
+                    break;
+                case VRCPhysBoneColliderBase.ShapeType.Plane:
+                    plan.Type = VRM10SpringBoneColliderTypes.Plane;
+                    plan.Normal = axis;
+                    break;
+                default:
+                    report.Warn($"{pb.name}: 未知のコライダー形状 {pb.shapeType} は変換しません", pb);
+                    return null;
+            }
+            if (pb.insideBounds || pb.shapeType == VRCPhysBoneColliderBase.ShapeType.Plane)
+            {
+                report.Info($"{pb.name}: {plan.Type} は VRMC_springBone_extended_collider で出力されます (非対応ビューアでは代替形状)", pb);
+            }
+            return plan;
         }
 
         static bool HasBranch(Transform t, System.Func<Transform, List<Transform>> children)

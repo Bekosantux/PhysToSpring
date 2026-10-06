@@ -1,13 +1,7 @@
 {
-    "name": "Bekosan.PhysToSpring.Editor",
-    "rootNamespace": "Bekosan.PhysToSpring.Editor",
-    "references": [
-        "Bekosan.PhysToSpring",
-        "VRM10",
-        "SpringBoneJobs",
-        "UniGLTF",
-        "UniHumanoid"
-    ],
+    "name": "Bekosan.PhysToSpring.DependencyCheck",
+    "rootNamespace": "Bekosan.PhysToSpring.DependencyCheck",
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],
@@ -16,10 +10,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": false,
-    "defineConstraints": [
-        "PHYSTOSPRING_VRCSDK",
-        "PHYSTOSPRING_UNIVRM"
-    ],
+    "defineConstraints": [],
     "versionDefines": [
         {
             "name": "com.vrchat.avatars",

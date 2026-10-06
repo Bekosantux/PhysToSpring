@@ -30,6 +30,47 @@ namespace Bekosan.PhysToSpring.Harness.Editor
             {
                 var avatar = BuildAvatar(root.transform, out var hairPb, out var tailPb, out var col);
 
+                // Plan: シーンを変更せず、コライダーは spring 間で共有
+                var planReport = new ConversionReport();
+                var plans = PhysToSpringConverter.Plan(avatar, planReport);
+                var p0 = plans.FirstOrDefault(p => p.Name == "HairRoot_0");
+                var p1 = plans.FirstOrDefault(p => p.Name == "HairRoot_1");
+                var pt = plans.FirstOrDefault(p => p.Name == "TailBase");
+                Check("plan only", !planReport.HasError && plans.Count == 3 && avatar.GetComponent<Vrm10Instance>() == null &&
+                                   avatar.GetComponentsInChildren<VRM10SpringBoneJoint>(true).Length == 0, planReport.Summary());
+                var cp = p0?.Colliders.FirstOrDefault();
+                Check("plan colliders", cp != null && p1 != null && p1.Colliders.Count == 1 && p1.Colliders[0] == cp && pt != null && pt.Colliders.Count == 0 &&
+                                        cp.Attach == col.transform && cp.Type == VRM10SpringBoneColliderTypes.Capsule &&
+                                        (cp.Offset - new Vector3(0, -0.05f, 0)).magnitude < 1e-5f && (cp.Tail - new Vector3(0, 0.05f, 0)).magnitude < 1e-5f,
+                    cp == null ? "missing" : $"{cp.Type} {cp.Offset} {cp.Tail}");
+
+                // ConvertCopy のオプション: 元を残す / PhysBone を残す / VRM10Object を作らない
+                var kr = new ConversionReport();
+                var kept = PhysToSpringConverter.ConvertCopy(avatar.gameObject, kr,
+                    new ConversionOptions { HideSource = false, RemovePhysBones = false, CreateVrmObject = false });
+                var keptVrm = kept != null ? kept.GetComponent<Vrm10Instance>() : null;
+                Check("copy keep options", keptVrm != null && keptVrm.Vrm == null && avatar.gameObject.activeSelf &&
+                                           kept.GetComponentsInChildren<VRCPhysBone>(true).Length == 2 && avatar.GetComponent<Vrm10Instance>() == null, kr.Summary());
+                if (kept != null) Object.DestroyImmediate(kept);
+
+                // 既定のオプション + 入れ子の作成先フォルダ
+                const string testRoot = "Assets/PhysToSpring_SelfTest";
+                var dr = new ConversionReport();
+                var made = PhysToSpringConverter.ConvertCopy(avatar.gameObject, dr, new ConversionOptions { GeneratedFolder = testRoot + "/Nested" });
+                var madeVrm = made != null ? made.GetComponent<Vrm10Instance>() : null;
+                var madePath = madeVrm != null && madeVrm.Vrm != null ? AssetDatabase.GetAssetPath(madeVrm.Vrm) : "";
+                Check("copy default options", made != null && !avatar.gameObject.activeSelf && made.GetComponentsInChildren<VRCPhysBone>(true).Length == 0 &&
+                                              madePath.StartsWith(testRoot + "/Nested/"), madePath + " / " + dr.Summary());
+                avatar.gameObject.SetActive(true);
+                if (made != null) Object.DestroyImmediate(made);
+                AssetDatabase.DeleteAsset(testRoot);
+
+                // Assets 外の作成先はエラーで、複製も作らない
+                var ir = new ConversionReport();
+                var childCount = root.transform.childCount;
+                Check("invalid folder → error", PhysToSpringConverter.ConvertCopy(avatar.gameObject, ir, new ConversionOptions { GeneratedFolder = "Packages/foo" }) == null &&
+                                                ir.HasError && root.transform.childCount == childCount, ir.Summary());
+
                 var report = new ConversionReport();
                 var vrm = PhysToSpringConverter.Convert(avatar, report);
                 Check("convert ok", vrm != null, report.Summary());

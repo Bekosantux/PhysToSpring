@@ -14,6 +14,18 @@ PhysBone の揺れ方になるべく近づくように、SpringBone のパラメ
 | VRChat SDK - Avatars | 3.10.5 |
 | [UniVRM](https://github.com/vrm-c/UniVRM/releases) (com.vrmc.vrm / com.vrmc.gltf) | 0.131.3 |
 
+## 導入
+
+Package Manager の「Add package from git URL...」で追加する
+
+```
+https://github.com/Bekosantux/PhysToSpring.git?path=/Assets/Bekosan/PhysToSpring
+```
+
+- バージョンを固定する場合は末尾に `#v0.1.0` のようにタグを付ける
+- VRChat SDK か UniVRM 0.131.0 以上が見つからないと変換器はコンパイルされず、Console に警告が出る
+- UniVRM を unitypackage で導入した場合はパッケージとして検出できないので、Project Settings > Player > Scripting Define Symbols に `PHYSTOSPRING_UNIVRM` を追加する
+
 ## 使い方
 
 1. メニュー `Tools/PhysToSpring` でウィンドウを開く
@@ -21,13 +33,53 @@ PhysBone の揺れ方になるべく近づくように、SpringBone のパラメ
 3. 変換方法を「複製して変換」か「そのまま変換」から選ぶ
 4. チェック結果にエラーがなければ「変換」を押す
 
-変換すると次のことが行われます。
+変換すると、アバターに `Vrm10Instance` と SpringBone / コライダーが追加されます。
+あわせて次の後処理を行います (ウィンドウで個別に切り替え可能。すべて Undo 可能)。
 
-- アバターに `Vrm10Instance` と SpringBone / コライダーが追加される
-- `VRM10Object` が無ければ `Assets/PhysToSpring_Generated/` に作られる
-- 元の `VRCPhysBone` / `VRCPhysBoneCollider` は削除される (Undo 可能)
+| オプション | 既定 | 内容 |
+|---|---|---|
+| 元のアバターを非表示 | ON | 複製して変換したとき、元のアバターを非表示にする |
+| PhysBone を削除 | ON | `VRCPhysBone` / `VRCPhysBoneCollider` を削除する。残すと再生時に二重に動く |
+| VRM10Object を作成 | ON | 無ければ `Assets/PhysToSpring_Generated/` に作る。無いと再生時に SpringBone が動かない |
 
-スクリプトからは `PhysToSpringConverter.ConvertCopy` / `ConvertInPlace` で呼べます。
+## スクリプトから使う
+
+```csharp
+using Bekosan.PhysToSpring.Editor;
+
+var report = new ConversionReport();
+
+// ウィンドウと同じ変換 (後処理は ConversionOptions で指定)
+var copy = PhysToSpringConverter.ConvertCopy(avatar, report, new ConversionOptions
+{
+    HideSource = false,
+    GeneratedFolder = "Assets/MyAvatar/VRM",
+});
+PhysToSpringConverter.ConvertInPlace(avatar, report);
+
+// シーンを変更せず、変換計画だけを受け取る (書き込みを自前で行う場合)
+List<SpringPlan> plans = PhysToSpringConverter.Plan(avatar.transform, report);
+if (!report.HasError)
+{
+    foreach (var spring in plans)
+    {
+        // spring.Bones / EndpointLocal / Joints / Colliders / Center
+    }
+}
+
+foreach (var e in report.Entries) Debug.Log($"{e.Level}: {e.Message}");
+```
+
+`SpringPlan` の中身
+
+- `Bones`: spring に入る既存の Transform (先頭から順に)
+- `EndpointLocal`: null でなければ、`Bones` 末尾の子にこの位置の tail ノードを作る (PhysBone の Endpoint Position)
+- `Joints`: セグメントごとの VRM joint パラメータ (stiffness / drag / gravity / 半径 / 角度制限)。tail には付かない
+- `Colliders`: VRM の形状に変換済みのコライダー。同じ PhysBone コライダーは spring 間で同じインスタンスを共有する
+- `Center`: VRM spring の center (null なら無し)
+
+安定 API は `PhysToSpringConverter` / `ConversionOptions` / `ConversionReport` / `SpringPlan` / `JointPlan` / `ColliderPlan` です。
+それ以外 (`PhysBoneReader` / `SpringBoneWriter` / `SpringMapper` など) は public ですが、予告なく変わることがあります。
 
 ## 制限事項
 

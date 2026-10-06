@@ -22,12 +22,15 @@ namespace Bekosan.PhysToSpring.Editor
         static readonly string[] ModeLabels = { "複製して変換", "そのまま変換" };
         static readonly string[] ModeNotes =
         {
-            "複製を変換し、元のアバターは非表示にします。",
+            "複製を作って変換します。",
             "対象を直接変換します。既存の VRM SpringBone 設定は置き換えられます。",
         };
 
         [SerializeField] GameObject target;
         [SerializeField] ConvertMode mode;
+        [SerializeField] bool hideSource = true;
+        [SerializeField] bool removePhysBones = true;
+        [SerializeField] bool createVrmObject = true;
         [SerializeField] bool showInfo = true;
         [SerializeField] bool showWarning = true;
         [SerializeField] bool showError = true;
@@ -100,7 +103,7 @@ namespace Bekosan.PhysToSpring.Editor
             }
             try
             {
-                var plans = PhysBoneReader.Read(target.transform, report);
+                var plans = PhysToSpringConverter.Plan(target.transform, report);
                 CheckTarget(target, report);
                 if (!report.HasError) report.Info($"{plans.Count} 本の spring に変換します", target);
             }
@@ -129,16 +132,23 @@ namespace Bekosan.PhysToSpring.Editor
         void Convert()
         {
             if (mode == ConvertMode.InPlace && !EditorUtility.DisplayDialog("PhysToSpring",
-                    $"{target.name} の既存の VRM SpringBone 設定 (joint / collider) を置き換え、PhysBone とそのコライダーを削除します。", "変換", "キャンセル"))
+                    $"{target.name} の既存の VRM SpringBone 設定 (joint / collider) を置き換えます。" +
+                    (removePhysBones ? "PhysBone とそのコライダーも削除します。" : ""), "変換", "キャンセル"))
             {
                 return;
             }
+            var options = new ConversionOptions
+            {
+                HideSource = hideSource,
+                RemovePhysBones = removePhysBones,
+                CreateVrmObject = createVrmObject,
+            };
             var result = new ConversionReport();
             try
             {
                 if (mode == ConvertMode.Copy)
                 {
-                    var copy = PhysToSpringConverter.ConvertCopy(target, result);
+                    var copy = PhysToSpringConverter.ConvertCopy(target, result, options);
                     converted = copy != null;
                     if (converted)
                     {
@@ -148,7 +158,7 @@ namespace Bekosan.PhysToSpring.Editor
                 }
                 else
                 {
-                    converted = PhysToSpringConverter.ConvertInPlace(target, result);
+                    converted = PhysToSpringConverter.ConvertInPlace(target, result, options);
                 }
             }
             catch (Exception e)
@@ -174,6 +184,13 @@ namespace Bekosan.PhysToSpring.Editor
             }
             mode = (ConvertMode)EditorGUILayout.Popup("変換方法", (int)mode, ModeLabels);
             EditorGUILayout.LabelField(" ", ModeNotes[(int)mode], EditorStyles.wordWrappedMiniLabel);
+            using (new EditorGUI.DisabledScope(mode != ConvertMode.Copy))
+            {
+                hideSource = EditorGUILayout.Toggle(new GUIContent("元のアバターを非表示", "複製して変換するとき、元のアバターを非表示にします"), hideSource);
+            }
+            removePhysBones = EditorGUILayout.Toggle(new GUIContent("PhysBone を削除", "残すと再生時に PhysBone と SpringBone が二重に動きます"), removePhysBones);
+            createVrmObject = EditorGUILayout.Toggle(new GUIContent("VRM10Object を作成",
+                $"Vrm10Instance に VRM10Object が無ければ {ConversionOptions.DefaultGeneratedFolder} に作ります。無いと再生時に SpringBone が動きません"), createVrmObject);
 
             EditorGUILayout.Space();
             DrawStatus();
