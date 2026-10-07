@@ -128,11 +128,6 @@ namespace Bekosan.PhysToSpring.Editor
             Dictionary<VRCPhysBoneColliderBase, ColliderPlan> colliderPlans, ConversionReport report)
         {
             var result = new List<SpringPlan>();
-            if (pb.version == VRCPhysBoneBase.Version.Version_1_0)
-            {
-                report.Error($"{pb.name}: PhysBone Version 1.0 には対応していません。Version 1.1 に変更してから変換してください", pb);
-                return result;
-            }
             WarnUnsupported(pb, avatarRoot, report);
 
             var root = RootOf(pb);
@@ -312,6 +307,7 @@ namespace Bekosan.PhysToSpring.Editor
                 ts[i] = t;
                 pbs[i] = new PbJointParams
                 {
+                    Version = pb.version == VRCPhysBoneBase.Version.Version_1_0 ? PbVersion.V1_0 : PbVersion.V1_1,
                     Integration = pb.integrationType == VRCPhysBoneBase.IntegrationType.Advanced ? PbIntegration.Advanced : PbIntegration.Simplified,
                     Pull = Eval(pb.pull, pb.pullCurve, t),
                     Spring = Eval(pb.spring, pb.springCurve, t),

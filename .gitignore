@@ -69,3 +69,5 @@ __pycache__/
 /HarnessJobs/maps/adv_s5_trace.json
 /HarnessJobs/maps/sag2.json
 /HarnessJobs/maps/sag_raw.json
+/HarnessJobs/maps/v10check_*.json
+/HarnessJobs/maps/version_feature_probe.json

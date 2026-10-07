@@ -1,10 +1,15 @@
 """Unity エディタの HarnessLauncher にジョブを投入して結果を待つ。"""
 import json
 import os
+import re
+import subprocess
+import tempfile
 import time
 from datetime import datetime
 
 JOBS_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+PROJECT_ROOT = os.path.dirname(JOBS_ROOT)
+UNITY_EXE = os.environ.get("PHYSTOSPRING_UNITY", r"C:\Program Files\Unity\Hub\Editor\2022.3.22f1\Editor\Unity.exe")
 
 
 def submit(job: dict, name: str) -> str:
@@ -38,7 +43,38 @@ def wait(job_id: str, timeout: float = 1800.0, poll: float = 0.5) -> str:
     raise TimeoutError(f"job {job_id} did not finish in {timeout}s")
 
 
+def editor_running() -> bool:
+    """このプロジェクトを開いている Unity エディタがあるか (Temp/UnityLockfile がロックされているか)。"""
+    lock = os.path.join(PROJECT_ROOT, "Temp", "UnityLockfile")
+    if not os.path.exists(lock):
+        return False
+    try:
+        os.rename(lock, lock)  # 開いているエディタがあると Windows では失敗する
+        return False
+    except OSError:
+        return True
+
+
+def run_batch(job: dict, name: str, timeout: float = 3600.0) -> str:
+    """エディタが閉じているとき用。Unity をバッチモードで起動して 1 ジョブ実行し、結果ディレクトリを返す。"""
+    tmp = os.path.join(tempfile.gettempdir(), f"phystospring_{name}.json")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(job, f)
+    log = os.path.join(tempfile.gettempdir(), f"phystospring_{name}.log")
+    subprocess.run([UNITY_EXE, "-batchmode", "-projectPath", PROJECT_ROOT, "-logFile", log,
+                    "-executeMethod", "Bekosan.PhysToSpring.Harness.Editor.HarnessLauncher.RunBatch", "-harnessJob", tmp],
+                   timeout=timeout)
+    with open(log, encoding="utf-8", errors="replace") as f:
+        ids = re.findall(r"\[PhysToSpringHarness\] batch enqueue (\S+)", f.read())
+    if not ids:
+        raise RuntimeError(f"batch run did not enqueue the job (see {log})")
+    return wait(ids[-1], timeout=10.0)
+
+
 def run(job: dict, name: str, timeout: float = 1800.0) -> str:
+    """エディタが開いていれば watcher に投入、閉じていればバッチモードで実行する。"""
+    if not editor_running():
+        return run_batch(job, name, max(timeout, 3600.0))
     return wait(submit(job, name), timeout)
 
 

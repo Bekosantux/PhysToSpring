@@ -22,7 +22,7 @@ namespace Bekosan.PhysToSpring.Harness
                 rig.Driver.gameObject.AddComponent(type);
             }
             var pb = rig.Root.gameObject.AddComponent<VRCPhysBone>();
-            pb.version = VRCPhysBoneBase.Version.Version_1_1;
+            pb.version = ParseEnum<VRCPhysBoneBase.Version>(spec.version);
             pb.rootTransform = rig.Root;
             if (pb.ignoreTransforms == null) pb.ignoreTransforms = new List<Transform>();
             pb.endpointPosition = rigSpec.endpoint != null ? HarnessMath.ToVector3(rigSpec.endpoint, Vector3.zero) : Vector3.zero;

@@ -95,6 +95,8 @@ namespace Bekosan.PhysToSpring.Harness
 
     public sealed class PhysBoneSpec
     {
+        /// <summary>Version_1_0 | Version_1_1</summary>
+        public string version = "Version_1_1";
         /// <summary>Simplified | Advanced</summary>
         public string integrationType = "Simplified";
         public float pull = 0.2f;

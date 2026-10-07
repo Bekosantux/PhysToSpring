@@ -314,6 +314,14 @@ namespace Bekosan.PhysToSpring.Harness.Editor
             SessionState.SetBool(SessionBatch, true);
         }
 
+        /// <summary>バッチモード用。変換器のセルフテストを実行して results/selftest.json に書き、終了する。</summary>
+        public static void RunSelfTestBatch()
+        {
+            ConverterSelfTest.Run(Path.Combine(Dir("results"), "selftest.json"));
+            Debug.Log("[PhysToSpringHarness] selftest done");
+            EditorApplication.Exit(0);
+        }
+
         [MenuItem(MenuRoot + "Enqueue Job...")]
         static void EnqueueJobMenu()
         {

@@ -82,7 +82,7 @@ def lerp_model(pb, length, dt=1.0 / 60.0, corr=None, alpha=np.pi / 2, phi=0.0, f
         stiff *= 1.0 + a0 * max(0.0, spring - a[2]) ** 2 / (pull + a[1])
         keep *= max(0.0, 1.0 - b0 * max(0.0, spring - b[2]) ** b[3] / (1.0 + b[1] * pull))
     stiff = min(stiff, STIFFNESS_MAX * length / L0)
-    stiff, grav = split_gravity(pb, stiff, alpha, phi)
+    stiff, grav = split_gravity(pb, stiff, alpha, phi, length, dt)
     return {"stiffness": stiff, "dragForce": float(np.clip(1.0 - keep, 0.0, 1.0)), "gravityPower": grav}
 
 
@@ -114,7 +114,7 @@ def advanced_model(pb, pull, momentum, length, dt, alpha, phi, root=True):
     f, g = ADV_ROOT_KEEP if root else ADV_CHILD_KEEP
     keep *= float(np.exp(-(f * k * (1.0 if root else pull) + g * k * k)))
     stiff = min(stiff, STIFFNESS_MAX * length / L0)
-    stiff, grav = split_gravity(pb, stiff, alpha, phi)
+    stiff, grav = split_gravity(pb, stiff, alpha, phi, length, dt)
     return {"stiffness": stiff, "dragForce": float(np.clip(1.0 - keep, 0.0, 1.0)), "gravityPower": grav}
 
 
@@ -133,7 +133,7 @@ def effective_gravity(pb, alpha=np.pi / 2, phi=0.0):
     theta = 0.0
     for _ in range(200):
         ge = g * (1.0 - falloff * max(0.0, np.cos(phi + theta)))
-        nxt = float(np.arctan2(ge * np.sin(alpha), (1.0 - ge) + ge * np.cos(alpha)))
+        nxt = deflection(pb, ge, alpha)
         if abs(nxt - theta) < 1e-7:
             break
         theta = nxt
@@ -145,7 +145,7 @@ def target_angle(pb, alpha, phi, theta):
     g = float(np.clip(pb.get("gravity", 0.0), 0.0, 1.0))
     falloff = float(np.clip(pb.get("gravityFalloff", 0.0), 0.0, 1.0))
     ge = g * (1.0 - falloff * max(0.0, np.cos(phi + theta)))
-    return float(np.arctan2(ge * np.sin(alpha), (1.0 - ge) + ge * np.cos(alpha)))
+    return deflection(pb, ge, alpha)
 
 
 def target_slope(pb, alpha=np.pi / 2, phi=0.0):
@@ -153,19 +153,48 @@ def target_slope(pb, alpha=np.pi / 2, phi=0.0):
     if pb.get("gravity", 0.0) <= 0.0 or pb.get("gravityFalloff", 0.0) <= 0.0:
         return 0.0
     ge = effective_gravity(pb, alpha, phi)
-    theta = float(np.arctan2(ge * np.sin(alpha), (1.0 - ge) + ge * np.cos(alpha)))
+    theta = deflection(pb, ge, alpha)
     h = 1e-4
     slope = (target_angle(pb, alpha, phi, theta + h) - target_angle(pb, alpha, phi, theta - h)) / (2 * h)
     return float(np.clip(slope, 0.0, 0.95))
 
 
-def split_gravity(pb, stiff, alpha=np.pi / 2, phi=0.0):
+def is_v10(pb):
+    return pb.get("version") == "Version_1_0"
+
+
+def deflection(pb, ge, alpha):
+    """重力 ge で rest (下とのなす角 alpha) から下へ傾く角。1.1 は静止方向 ∝ (1-g) rest + g down、1.0 は ∝ pull rest + g down。"""
+    w = float(np.clip(pb.get("pull", 0.0), 0.0, 1.0)) if is_v10(pb) else 1.0 - ge
+    return float(np.arctan2(ge * np.sin(alpha), w + ge * np.cos(alpha)))
+
+
+def gravity_v10(pb, stiff, alpha=np.pi / 2, phi=0.0, length=L0, dt=1.0 / 60.0):
+    """
+    PhysBone 1.0 の重力は rest を曲げず、静止方向が pull rest + g down の向きになる (pull/spring/stiffness によらない)。
+    1 フレームの更新も VRM と同じ形 (rest 方向の力 + 下向きの力) なので、重力なしの S に G = S g/pull を足す
+    (1 分割の計測で Advanced は厳密、多関節チェーンの評価で 1.1 写像の 1.1 に対する誤差より小さい)。
+    pull が 0 なら S も 0 なので pull → 0 の極限 (Simplified は L/dt g (1-spring)、Advanced は L/dt g) を使う。
+    """
+    g = effective_gravity(pb, alpha, phi)
+    if g <= 0.0:
+        return 0.0
+    pull = float(np.clip(pb["pull"], 0.0, 1.0))
+    if pull >= 1e-4:
+        return stiff * g / pull
+    k = 1.0 if pb.get("integrationType") == "Advanced" else 1.0 - float(np.clip(pb.get("spring", 0.0), 0.0, 1.0))
+    return length / dt * g * k
+
+
+def split_gravity(pb, stiff, alpha=np.pi / 2, phi=0.0, length=L0, dt=1.0 / 60.0):
     """
     PhysBone の重力は pull/spring によらず静止方向を ĝ = normalize((1-g) rest + g down) に変える (計測で一致)。
     VRM の力 S' rest + G' down を ĝ 方向・大きさ S にすれば、静止方向も ĝ まわりの戻り速度も一致する:
       S' = S (1-g) / n,  G' = S g / n,  n = |(1-g) rest + g down|
     alpha は rest 方向と重力方向のなす角 (水平なボーンで π/2)。
     """
+    if is_v10(pb):
+        return stiff, gravity_v10(pb, stiff, alpha, phi, length, dt)
     g = effective_gravity(pb, alpha, phi)
     if g <= 0.0:
         return stiff, 0.0
@@ -240,5 +269,5 @@ def chain_alphas(pb, alpha0, segments):
         phi = alpha0 - a
         out.append((a, phi))
         ge = effective_gravity(pb, a, phi)
-        a -= float(np.arctan2(ge * np.sin(a), (1.0 - ge) + ge * np.cos(a)))
+        a -= deflection(pb, ge, a)
     return out

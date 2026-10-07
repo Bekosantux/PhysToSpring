@@ -51,6 +51,7 @@ def main():
     ap.add_argument("--segments", type=int, default=None, help="分割数を固定する")
     ap.add_argument("--scale-motion", action="store_true", help="並進の動きをボーン長 / 0.05 倍する (写像そのものの精度を見る)")
     ap.add_argument("--trace", action="store_true", help="トレースを書き出す (オフライン最適化用)")
+    ap.add_argument("--version", default="Version_1_1", help="PhysBone の version (Version_1_0 / Version_1_1)")
     ap.add_argument("--converter", action="store_true", help="C# 変換器 (fromConverter) の結果も並べて Python の写像と比べる")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
@@ -64,6 +65,8 @@ def main():
     if args.segments:
         for cfg in configs:
             cfg["rig"]["segments"] = args.segments
+    for cfg in configs:
+        cfg["pb"]["version"] = args.version
 
     cases = []
     for cfg in configs:
@@ -108,7 +111,7 @@ def main():
     errs = np.array([r["err"] for r in rows])
     print(f"mean {errs.mean():.3f}  median {np.median(errs):.3f}  p90 {np.percentile(errs, 90):.3f}  max {errs.max():.3f}  "
           f"(chain {chain0.get('direction')}, result {result_dir})")
-    out = args.out or os.path.join(harness.JOBS_ROOT, "maps", f"{args.map}_validate_s{args.seed}{'_scaled' if args.scale_motion else ''}{'_fo' if args.falloff_max > 0 else ''}{'_adv' if args.integration == 'Advanced' else ''}{f'_n{args.segments}' if args.segments else ''}.json")
+    out = args.out or os.path.join(harness.JOBS_ROOT, "maps", f"{args.map}_validate_s{args.seed}{'_scaled' if args.scale_motion else ''}{'_fo' if args.falloff_max > 0 else ''}{'_adv' if args.integration == 'Advanced' else ''}{f'_n{args.segments}' if args.segments else ''}{'_v10' if args.version == 'Version_1_0' else ''}.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump({"map": args.map, "seed": args.seed, "result": result_dir, "configs": rows}, f, indent=2)
 

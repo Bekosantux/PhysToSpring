@@ -135,10 +135,16 @@ namespace Bekosan.PhysToSpring.Harness.Editor
                                              avatar.GetComponentsInChildren<VRM10SpringBoneJoint>(true).Length == before, zr.Summary());
                 Object.DestroyImmediate(zero.gameObject);
 
-                // エラー: Version 1.0
+                // Version 1.0: 警告なしで変換し、重力は G = S g/pull
                 hairPb.version = VRCPhysBoneBase.Version.Version_1_0;
                 var vr = new ConversionReport();
-                Check("version 1.0 → error", PhysToSpringConverter.Convert(avatar, vr) == null && vr.HasError, vr.Summary());
+                var vrm10 = PhysToSpringConverter.Convert(avatar, vr);
+                var v10j = vrm10?.SpringBone.Springs.FirstOrDefault(s => s.Name == "HairRoot_0")?.Joints[0];
+                var e10 = SpringMapper.Map(new PbJointParams { Version = PbVersion.V1_0, Pull = 0.3f, Spring = 0.4f, Gravity = 0.2f }, 0.05, true, 0, 0);
+                Check("version 1.0 → converted", vrm10 != null && !vr.HasError && !vr.Summary().Contains("Version 1.0") && v10j != null &&
+                                                       Mathf.Abs(v10j.m_stiffnessForce - e10.Stiffness) < 1e-4f && Mathf.Abs(v10j.m_gravityPower - e10.GravityPower) < 1e-4f &&
+                                                       Mathf.Abs(e10.GravityPower - e10.Stiffness * 0.2f / 0.3f) < 1e-3f,
+                    v10j == null ? vr.Summary() : $"stiff {v10j.m_stiffnessForce} vs {e10.Stiffness}, grav {v10j.m_gravityPower} vs {e10.GravityPower} / {vr.Summary()}");
                 hairPb.version = VRCPhysBoneBase.Version.Version_1_1;
 
                 // メニューの後処理: VRM10Object 作成と PhysBone 削除

@@ -84,7 +84,7 @@ foreach (var e in report.Entries) Debug.Log($"{e.Level}: {e.Message}");
 ## 制限事項
 
 - **60fps 前提** です。UniVRM の SpringBone はフレームレートで挙動が変わるため、60fps で PhysBone に合うようにパラメータを決めています。
-- **PhysBone Version 1.1 のみ** 対応します。1.0 のものはエラーになります。
+- PhysBone Version 1.0 と 1.1 のどちらも変換できます。重力の効き方がバージョンで違うので、それぞれ専用の写像を使います。
 - 長さ 1mm 未満のボーンがあると変換しません。ボーンを直してから変換してください。
 - Stretch / Squish / Grab / Pose / Is Animated / Parameter は無視します。
 - Limit の Hinge / Polar は近似です (未検証)。Limit Rotation のカーブは無視します。

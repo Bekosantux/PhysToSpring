@@ -68,8 +68,9 @@ def simulate(drv, n, L, stiff, drag, grav=0.0, gdir=(0.0, -1.0, 0.0), dt=1 / 60)
     return _simulate(drv["pos"], drv["rot"], drv["root"], drv["dir"], float(L), S, D, G, np.asarray(gdir, float), dt)
 
 
-def load_trace(rd, case, nseg):
-    """driver (位置・回転・Root のローカル位置・チェーン方向) と PhysBone のワールド方向 (n, T, 3) を返す。"""
+def load_trace(rd, case, nseg, rest_dir=None):
+    """driver (位置・回転・Root のローカル位置・チェーン方向) と PhysBone のワールド方向 (n, T, 3) を返す。
+    rest_dir を省くとチェーン方向は PhysBone のフレーム 0 から取る (フレーム 0 は 1 ステップ後なので、重力ありでは rig の direction を渡す)。"""
     names = ["Root"] + [f"C0_{i}" for i in range(nseg)]
     dpos, dq, P = [], [], {(rig, nm): [] for rig in ("pb", "vrm") for nm in names}
     for r in csv.DictReader(open(os.path.join(rd, case, "trace.csv"))):
@@ -88,6 +89,8 @@ def load_trace(rd, case, nseg):
             out.append(np.einsum("tij,tj->ti", rot, loc))
         return np.array(out)
     d0 = P[("pb", names[1])][0] - P[("pb", names[0])][0]
+    if rest_dir is not None:
+        d0 = np.asarray(rest_dir, float)
     drv = {"pos": np.array(dpos), "rot": np.ascontiguousarray(rot), "root": P[("pb", "Root")][0].copy(), "dir": d0 / np.linalg.norm(d0)}
     return drv, dirs("pb"), dirs("vrm")
 

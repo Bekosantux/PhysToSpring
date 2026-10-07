@@ -8,9 +8,16 @@ namespace Bekosan.PhysToSpring
         Advanced,
     }
 
+    public enum PbVersion
+    {
+        V1_1,
+        V1_0,
+    }
+
     /// <summary>1 joint (= 1 セグメント) 分の PhysBone パラメータ。カーブ適用済みの値。</summary>
     public struct PbJointParams
     {
+        public PbVersion Version;
         public PbIntegration Integration;
         public float Pull;
         /// <summary>Simplified では spring、Advanced では momentum。</summary>
@@ -28,7 +35,7 @@ namespace Bekosan.PhysToSpring
     }
 
     /// <summary>
-    /// PhysBone (v1.1, 60fps) -> VRM 1.0 SpringBone のパラメータ写像。
+    /// PhysBone (v1.1 / v1.0, 60fps) -> VRM 1.0 SpringBone のパラメータ写像。
     /// 計測ハーネスでの実測 (HarnessJobs/tools/mapping.py, maps/lerp_v5.json) から得た閉形式 + 補正。
     /// stiffness / gravityPower はボーンのワールド長 L に比例し、dragForce は L によらない。
     /// </summary>
@@ -89,7 +96,16 @@ namespace Bekosan.PhysToSpring
                 keep *= Math.Max(0.0, 1.0 - b0 * Math.Pow(Math.Max(0.0, spring - SimpB[2]), SimpB[3]) / (1.0 + SimpB[1] * pull));
             }
             stiff = Math.Min(stiff, StiffnessMax * length / L0);
-            SplitGravity(pb, stiff, alpha, phi, out var vrmStiff, out var vrmGravity);
+            double vrmStiff, vrmGravity;
+            if (pb.Version == PbVersion.V1_0)
+            {
+                vrmStiff = stiff;
+                vrmGravity = GravityV10(pb, stiff, length, alpha, phi);
+            }
+            else
+            {
+                SplitGravity(pb, stiff, alpha, phi, out vrmStiff, out vrmGravity);
+            }
             return new VrmJointParams
             {
                 Stiffness = (float)vrmStiff,
@@ -117,6 +133,21 @@ namespace Bekosan.PhysToSpring
         }
 
         /// <summary>
+        /// PhysBone 1.0 の重力は rest を曲げず、静止方向が pull rest + g down の向きになる (pull/spring/stiffness によらない)。
+        /// 1 フレームの更新も VRM と同じ形 (rest 方向の力 + 下向きの力) なので、重力なしの stiffness S に G = S g/pull を足す。
+        /// pull が 0 なら S も 0 なので、そのときは pull → 0 の極限 (Simplified は L/dt g (1-spring)、Advanced は L/dt g) を使う。
+        /// </summary>
+        static double GravityV10(PbJointParams pb, double stiff, double length, double alpha, double phi)
+        {
+            var g = EffectiveGravity(pb, alpha, phi);
+            if (g <= 0.0) return 0.0;
+            var pull = Clamp01(pb.Pull);
+            if (pull >= 1e-4) return stiff * g / pull;
+            var keepFactor = pb.Integration == PbIntegration.Advanced ? 1.0 : 1.0 - Clamp01(pb.Spring);
+            return length / Dt * g * keepFactor;
+        }
+
+        /// <summary>
         /// gravityFalloff は元の向きに近いほど重力を弱める: g_eff = g (1 - falloff max(0, cos(φ+θ)))。
         /// VRM の重力は向きによらないので、rest から出発した静止点 θ* での g_eff を使う。
         /// </summary>
@@ -128,7 +159,7 @@ namespace Bekosan.PhysToSpring
             var theta = 0.0;
             for (var i = 0; i < 200; ++i)
             {
-                var next = Deflection(g * (1.0 - falloff * Math.Max(0.0, Math.Cos(phi + theta))), alpha);
+                var next = Deflection(pb, g * (1.0 - falloff * Math.Max(0.0, Math.Cos(phi + theta))), alpha);
                 if (Math.Abs(next - theta) < 1e-7) break;
                 theta = next;
             }
@@ -147,12 +178,19 @@ namespace Bekosan.PhysToSpring
                 var a = restAlphas[i] - sag;
                 alphas[i] = a;
                 phis[i] = sag;
-                sag += Deflection(EffectiveGravity(pbs[i], a, sag), a);
+                sag += Deflection(pbs[i], EffectiveGravity(pbs[i], a, sag), a);
             }
         }
 
-        /// <summary>重力 g で rest (下とのなす角 α) から下へ傾く角。</summary>
-        static double Deflection(double g, double alpha) => Math.Atan2(g * Math.Sin(alpha), (1.0 - g) + g * Math.Cos(alpha));
+        /// <summary>
+        /// 重力 g で rest (下とのなす角 α) から下へ傾く角。
+        /// 1.1 は静止方向 ∝ (1-g) rest + g down、1.0 は ∝ pull rest + g down。
+        /// </summary>
+        static double Deflection(PbJointParams pb, double g, double alpha)
+        {
+            var restWeight = pb.Version == PbVersion.V1_0 ? Clamp01(pb.Pull) : 1.0 - g;
+            return Math.Atan2(g * Math.Sin(alpha), restWeight + g * Math.Cos(alpha));
+        }
 
         static double Clamp01(double x) => x < 0.0 ? 0.0 : x > 1.0 ? 1.0 : x;
         static double Sq(double x) => x * x;

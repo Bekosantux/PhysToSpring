@@ -1,0 +1,1214 @@
+{
+ "groups": {
+  "simp": {
+   "configs": [
+    {
+     "name": "v00",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.946,
+      "spring": 0.252,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.0577
+     }
+    },
+    {
+     "name": "v01",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.33,
+      "spring": 0.646,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.095
+     }
+    },
+    {
+     "name": "v02",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.396,
+      "spring": 0.681,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.0847
+     }
+    },
+    {
+     "name": "v03",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.697,
+      "spring": 0.33,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.0211
+     }
+    },
+    {
+     "name": "v04",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.9,
+      "spring": 0.402,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.0378
+     }
+    },
+    {
+     "name": "v05",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.669,
+      "spring": 0.243,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 4,
+      "length": 0.0497
+     }
+    },
+    {
+     "name": "v06",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.402,
+      "spring": 0.039,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.0902
+     }
+    },
+    {
+     "name": "v07",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.827,
+      "spring": 0.467,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 4,
+      "length": 0.0465
+     }
+    },
+    {
+     "name": "v08",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.971,
+      "spring": 0.588,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 4,
+      "length": 0.0553
+     }
+    },
+    {
+     "name": "v09",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.958,
+      "spring": 0.55,
+      "stiffness": 0.2,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.0388
+     }
+    }
+   ],
+   "cases": [
+    "step_x",
+    "sine_rot_z",
+    "chirp_pos_x",
+    "ramp_rot_z"
+   ]
+  },
+  "simp_grav": {
+   "configs": [
+    {
+     "name": "v00",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.202,
+      "spring": 0.41,
+      "stiffness": 0.2,
+      "gravity": 0.741,
+      "gravityFalloff": 0.297
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.0459
+     }
+    },
+    {
+     "name": "v01",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.897,
+      "spring": 0.395,
+      "stiffness": 0.2,
+      "gravity": 0.894,
+      "gravityFalloff": 0.243
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.0243
+     }
+    },
+    {
+     "name": "v02",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.378,
+      "spring": 0.545,
+      "stiffness": 0.2,
+      "gravity": 0.486,
+      "gravityFalloff": 0.924
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.1044
+     }
+    },
+    {
+     "name": "v03",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.204,
+      "spring": 0.413,
+      "stiffness": 0.2,
+      "gravity": 0.653,
+      "gravityFalloff": 0.919
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.026
+     }
+    },
+    {
+     "name": "v04",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.632,
+      "spring": 0.038,
+      "stiffness": 0.2,
+      "gravity": 0.669,
+      "gravityFalloff": 0.573
+     },
+     "rig": {
+      "segments": 4,
+      "length": 0.0245
+     }
+    },
+    {
+     "name": "v05",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.548,
+      "spring": 0.346,
+      "stiffness": 0.2,
+      "gravity": 0.485,
+      "gravityFalloff": 0.977
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.1155
+     }
+    },
+    {
+     "name": "v06",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.331,
+      "spring": 0.052,
+      "stiffness": 0.2,
+      "gravity": 0.263,
+      "gravityFalloff": 0.814
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.0258
+     }
+    },
+    {
+     "name": "v07",
+     "pb": {
+      "integrationType": "Simplified",
+      "pull": 0.624,
+      "spring": 0.484,
+      "stiffness": 0.2,
+      "gravity": 0.156,
+      "gravityFalloff": 0.058
+     },
+     "rig": {
+      "segments": 4,
+      "length": 0.0268
+     }
+    }
+   ],
+   "cases": [
+    "sag",
+    "sine_rot_x",
+    "step_y",
+    "ramp_rot_y"
+   ]
+  },
+  "adv": {
+   "configs": [
+    {
+     "name": "v00",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.347,
+      "spring": 0.202,
+      "stiffness": 0.164,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.093
+     }
+    },
+    {
+     "name": "v01",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.148,
+      "spring": 0.26,
+      "stiffness": 0.595,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.0703
+     }
+    },
+    {
+     "name": "v02",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.467,
+      "spring": 0.433,
+      "stiffness": 0.666,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.1117
+     }
+    },
+    {
+     "name": "v03",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.344,
+      "spring": 0.101,
+      "stiffness": 0.228,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 4,
+      "length": 0.0221
+     }
+    },
+    {
+     "name": "v04",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.926,
+      "spring": 0.584,
+      "stiffness": 0.177,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.0912
+     }
+    },
+    {
+     "name": "v05",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.403,
+      "spring": 0.188,
+      "stiffness": 0.366,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.0268
+     }
+    },
+    {
+     "name": "v06",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.118,
+      "spring": 0.02,
+      "stiffness": 0.008,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.0361
+     }
+    },
+    {
+     "name": "v07",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.294,
+      "spring": 0.413,
+      "stiffness": 0.567,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.0308
+     }
+    },
+    {
+     "name": "v08",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.172,
+      "spring": 0.604,
+      "stiffness": 0.252,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.05
+     }
+    },
+    {
+     "name": "v09",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.984,
+      "spring": 0.163,
+      "stiffness": 0.113,
+      "gravity": 0.0
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.0266
+     }
+    }
+   ],
+   "cases": [
+    "step_x",
+    "sine_rot_z",
+    "chirp_pos_x",
+    "ramp_rot_z"
+   ]
+  },
+  "adv_grav": {
+   "configs": [
+    {
+     "name": "v00",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.847,
+      "spring": 0.623,
+      "stiffness": 0.194,
+      "gravity": 0.113,
+      "gravityFalloff": 0.375
+     },
+     "rig": {
+      "segments": 3,
+      "length": 0.0747
+     }
+    },
+    {
+     "name": "v01",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.442,
+      "spring": 0.58,
+      "stiffness": 0.742,
+      "gravity": 0.06,
+      "gravityFalloff": 0.538
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.0775
+     }
+    },
+    {
+     "name": "v02",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.834,
+      "spring": 0.197,
+      "stiffness": 0.436,
+      "gravity": 0.33,
+      "gravityFalloff": 0.265
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.0546
+     }
+    },
+    {
+     "name": "v03",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.584,
+      "spring": 0.239,
+      "stiffness": 0.628,
+      "gravity": 0.054,
+      "gravityFalloff": 0.972
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.049
+     }
+    },
+    {
+     "name": "v04",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.231,
+      "spring": 0.416,
+      "stiffness": 0.643,
+      "gravity": 0.742,
+      "gravityFalloff": 0.87
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.0394
+     }
+    },
+    {
+     "name": "v05",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.332,
+      "spring": 0.628,
+      "stiffness": 0.413,
+      "gravity": 0.484,
+      "gravityFalloff": 0.863
+     },
+     "rig": {
+      "segments": 6,
+      "length": 0.0244
+     }
+    },
+    {
+     "name": "v06",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.094,
+      "spring": 0.227,
+      "stiffness": 0.359,
+      "gravity": 0.267,
+      "gravityFalloff": 0.894
+     },
+     "rig": {
+      "segments": 5,
+      "length": 0.0376
+     }
+    },
+    {
+     "name": "v07",
+     "pb": {
+      "integrationType": "Advanced",
+      "pull": 0.407,
+      "spring": 0.549,
+      "stiffness": 0.427,
+      "gravity": 0.109,
+      "gravityFalloff": 0.497
+     },
+     "rig": {
+      "segments": 4,
+      "length": 0.0759
+     }
+    }
+   ],
+   "cases": [
+    "sag",
+    "sine_rot_x",
+    "step_y",
+    "ramp_rot_y"
+   ]
+  }
+ },
+ "sag": [
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.1_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.1_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.1_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.4_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.4_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.4_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.8_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.8_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.2_p0.8_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.1_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.1_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.1_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.4_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.4_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.4_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.8_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.8_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.5_p0.8_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.1_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.1_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.1_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.4_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.4_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.4_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.8_a30",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.8_a90",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Simp_k0.2_g0.8_p0.8_a150",
+   "integ": "Simplified",
+   "stiffness": 0.2,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.1_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.1_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.1_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.4_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.4_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.4_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.8_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.8_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.2_p0.8_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.1_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.1_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.1_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.4_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.4_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.4_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.8_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.8_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.5_p0.8_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.1_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.1_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.1_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.4_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.4_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.4_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.8_a30",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.8_a90",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.0_g0.8_p0.8_a150",
+   "integ": "Advanced",
+   "stiffness": 0.0,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.1_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.1_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.1_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.4_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.4_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.4_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.8_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.8_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.2_p0.8_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.2,
+   "pull": 0.8,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.1_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.1_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.1_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.4_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.4_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.4_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.8_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.8_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.5_p0.8_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.5,
+   "pull": 0.8,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.1_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.1_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.1_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.1,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.4_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.4_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.4_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.4,
+   "alpha": 150
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.8_a30",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 30
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.8_a90",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 90
+  },
+  {
+   "tag": "sag__Adva_k0.5_g0.8_p0.8_a150",
+   "integ": "Advanced",
+   "stiffness": 0.5,
+   "gravity": 0.8,
+   "pull": 0.8,
+   "alpha": 150
+  }
+ ]
+}
