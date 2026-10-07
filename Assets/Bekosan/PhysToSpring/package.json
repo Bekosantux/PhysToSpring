@@ -1,9 +1,9 @@
 {
   "name": "com.bekosan.phystospring",
   "displayName": "PhysToSpring",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "unity": "2022.3",
-  "description": "VRChat PhysBone を VRM 1.0 SpringBone に変換するエディタ拡張 (実験的)。VRChat SDK - Avatars と UniVRM (com.vrmc.vrm 0.131.0 以上) が別途必要です。",
+  "description": "VRChat PhysBone を VRM 1.0 SpringBone に変換するエディタ拡張 (実験的)。VRChat SDK - Avatars と UniVRM (com.vrmc.vrm 0.131.0 以上) が別途必要。",
   "keywords": ["VRChat", "PhysBone", "VRM", "SpringBone"],
   "author": {
     "name": "Bekosan",
